@@ -25,3 +25,6 @@ Various models such as VGG-16, Resnet, etc pretrained on the [FACESCRUB Dataset]
 <img src="./Images/New folder/6.png">
 <img src="./Images/New folder/7.png">
 <img src="./Images/New folder/8.png">
+
+
+The above results of the sliding window FGSM attack shows the most prominent regions of the face which can cause model misclassification if these areas are perturbed in the correct manner. Particularly in the FACESCRUB Dataset, the eyes and the nose are the most prone areas to attack for model misclassification.
