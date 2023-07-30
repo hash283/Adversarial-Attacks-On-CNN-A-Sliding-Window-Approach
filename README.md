@@ -17,4 +17,4 @@ Various models such as VGG-16, Resnet, etc pretrained on the [FACESCRUB Dataset]
 - Run final_vgg.py to perform an attack on the VGG-16 model trained on the FACESCRUB Dataset.
 
 ## Results
-<img src="./Images/New Folder/1\.png">
+<img src="./Images/New Folder/1.png">
