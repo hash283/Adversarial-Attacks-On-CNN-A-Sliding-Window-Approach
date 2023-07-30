@@ -15,3 +15,5 @@ Various models such as VGG-16, Resnet, etc pretrained on the [FACESCRUB Dataset]
 
 - Run Dataset1_cuda.py to download the FACESCRUB dataset.
 - Run final_vgg.py to perform an attack on the VGG-16 model trained on the FACESCRUB Dataset.
+
+## Results
