@@ -9,4 +9,9 @@ FGSM is widely used to evaluate the robustness of machine learning models, under
 
 Here an iterative sliding window version of this attack is used to perform attacks on the model. The advantage of this method over the conventional method is that it is an iterative method over the traditional one-shot FGSM attack. Moreover, the sliding window technique can be used to find the regions of the image which are most susceptible to perturbations that causes misclassifications in the model.
 
+Various models such as VGG-16, Resnet, etc pretrained on the [FACESCRUB Dataset](https://vintage.winklerbros.net/facescrub.html) are used as models on which these attacks are performed.
 
+## Usage
+
+- Run Dataset1_cuda.py to download the FACESCRUB dataset.
+- Run final_vgg.py to perform an attack on the VGG-16 model trained on the FACESCRUB Dataset.
