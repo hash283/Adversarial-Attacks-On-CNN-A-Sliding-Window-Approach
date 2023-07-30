@@ -18,3 +18,10 @@ Various models such as VGG-16, Resnet, etc pretrained on the [FACESCRUB Dataset]
 
 ## Results
 <img src="./Images/New folder/1.png">
+<img src="./Images/New folder/2.png">
+<img src="./Images/New folder/3.png">
+<img src="./Images/New folder/4.png">
+<img src="./Images/New folder/5.png">
+<img src="./Images/New folder/6.png">
+<img src="./Images/New folder/7.png">
+<img src="./Images/New folder/8.png">
