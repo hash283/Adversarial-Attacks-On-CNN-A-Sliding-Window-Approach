@@ -52,38 +52,38 @@ for folders in os.listdir(path_actor):
         x[i] = x_
         y.append(folders)
         i += 1        
-#break
-# transform = transforms.PILToTensor()
+break
+ transform = transforms.PILToTensor()
 # Convert the PIL image to Torch tensor
-        #img_tensor = transform(img)
-        #x_ = image.img_to_array(img)
-        #x_ = preprocess_input(x_)
-        #x.append(x_,axis=0)
-        #torch.cat((x, x_), dim=1)
-        #x[i] = x_
-        #i += 1
-        #x = np.concatenate((x, x_), axis = 0)
-        #y.append(folders)
-#         if (person_images_idx == X_rand[rand_idx]):
-#                 X_test[ts_idx] = x
-#                 y_ts[ts_idx] = personFolder
-#                 ts_idx += 1
-#                 #print(ts_idx)
-#                 if rand_idx<number_of_images-1:
-#                     rand_idx += 1
+        img_tensor = transform(img)
+        x_ = image.img_to_array(img)
+        x_ = preprocess_input(x_)
+        x.append(x_,axis=0)
+        torch.cat((x, x_), dim=1)
+        x[i] = x_
+        i += 1
+        x = np.concatenate((x, x_), axis = 0)
+        y.append(folders)
+        if (person_images_idx == X_rand[rand_idx]):
+                X_test[ts_idx] = x
+                y_ts[ts_idx] = personFolder
+                ts_idx += 1
+                #print(ts_idx)
+                if rand_idx<number_of_images-1:
+                    rand_idx += 1
                 
-#             else:
-#                 X_train[tr_idx] = x
-#                 #print("else\n")
-#                 y_tr[tr_idx] = personFolder
-#                 tr_idx += 1
-#             count += 1
-#             person_images_idx += 1
-#             #print(count)
-#             if (count % ((number_of_images*aug_multiplier)) == 0):
-#                 print("Processing image: ", count, ", ", img)
-#                 break
-#print(k)
+            else:
+                X_train[tr_idx] = x
+                #print("else\n")
+                y_tr[tr_idx] = personFolder
+                tr_idx += 1
+            count += 1
+            person_images_idx += 1
+            #print(count)
+            if (count % ((number_of_images*aug_multiplier)) == 0):
+                print("Processing image: ", count, ", ", img)
+                break
+print(k)
 
 
 # In[20]:
@@ -96,9 +96,9 @@ y_fin = le.fit_transform(y)
 onehot_encoder = OneHotEncoder(sparse=False)
 y_fin = y_fin.reshape(len(y_fin), 1)
 onehot_encoded = onehot_encoder.fit_transform(y_fin)
-#y_tst = le.fit_transform(y_test)
-#y_tst = y_tst.reshape(len(y_tst), 1)
-#onehot_encoded_test = onehot_encoder.fit_transform(y_tst)
+y_tst = le.fit_transform(y_test)
+y_tst = y_tst.reshape(len(y_tst), 1)
+onehot_encoded_test = onehot_encoder.fit_transform(y_tst)
 
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test = train_test_split(x,onehot_encoded, test_size=0.15, random_state=42)
