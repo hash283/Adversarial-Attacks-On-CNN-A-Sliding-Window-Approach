@@ -38,7 +38,7 @@ y = []
 # In[4]:
 
 
-#transform = transforms.ToTensor()
+transform = transforms.ToTensor()
 i=0
 transform = transforms.Compose([transforms.ToTensor()])
 for folders in os.listdir(path_actor):
@@ -49,41 +49,41 @@ for folders in os.listdir(path_actor):
         x[i] = x_
         y.append(folders)
         i+=1
-        #x = torch.cat([x, x_], dim=0)
+        x = torch.cat([x, x_], dim=0)
         
-        #transform = transforms.Compose([transforms.PILToTensor()])
-        #break
-# transform = transforms.PILToTensor()
+        transform = transforms.Compose([transforms.PILToTensor()])
+        break
+ transform = transforms.PILToTensor()
 # Convert the PIL image to Torch tensor
-        #img_tensor = transform(img)
-        #x_ = image.img_to_array(img)
-        #x_ = preprocess_input(x_)
-        #x.append(x_,axis=0)
-        #torch.cat((x, x_), dim=1)
-        #x[i] = x_
-        #i += 1
-        #x = np.concatenate((x, x_), axis = 0)
-        #y.append(folders)
-#         if (person_images_idx == X_rand[rand_idx]):
-#                 X_test[ts_idx] = x
-#                 y_ts[ts_idx] = personFolder
-#                 ts_idx += 1
-#                 #print(ts_idx)
-#                 if rand_idx<number_of_images-1:
-#                     rand_idx += 1
+        img_tensor = transform(img)
+        x_ = image.img_to_array(img)
+        x_ = preprocess_input(x_)
+        x.append(x_,axis=0)
+        torch.cat((x, x_), dim=1)
+        x[i] = x_
+        i += 1
+        x = np.concatenate((x, x_), axis = 0)
+        y.append(folders)
+         if (person_images_idx == X_rand[rand_idx]):
+                X_test[ts_idx] = x
+                y_ts[ts_idx] = personFolder
+                ts_idx += 1
+                #print(ts_idx)
+                if rand_idx<number_of_images-1:
+                    rand_idx += 1
                 
-#             else:
-#                 X_train[tr_idx] = x
-#                 #print("else\n")
-#                 y_tr[tr_idx] = personFolder
-#                 tr_idx += 1
-#             count += 1
-#             person_images_idx += 1
-#             #print(count)
-#             if (count % ((number_of_images*aug_multiplier)) == 0):
-#                 print("Processing image: ", count, ", ", img)
-#                 break
-#print(k)
+            else:
+                X_train[tr_idx] = x
+                #print("else\n")
+                y_tr[tr_idx] = personFolder
+                tr_idx += 1
+            count += 1
+            person_images_idx += 1
+            #print(count)
+            if (count % ((number_of_images*aug_multiplier)) == 0):
+                print("Processing image: ", count, ", ", img)
+                break
+print(k)
 
 
 # In[5]:
@@ -199,17 +199,17 @@ for eps in epsilons:
 # In[12]:
 
 
-#eps = 0.02
+eps = 0.02
 def sliding_window_3d(Image, data, window_size,stride,eps):
     # Get dimensions of the data
     height, width, depth = data.shape
 
     # Get dimensions of the sliding window
     dx , dy  = window_size
-    #print("Original")
-    #plt.imshow(Image)
-    #plt.show()
-    attack_imgs = []
+    print("Original")
+    plt.imshow(Image)
+    plt.show()
+    ttack_imgs = []
     for i in range(0,height-dx,stride):
         for j in range(0,width-dy,stride):
             image = Image.copy()
@@ -229,59 +229,59 @@ count
 # In[23]:
 
 
-# wnd = []
-# perturbations = create_adversarial_pattern(x_test[0], y_test[0])
-#     #plt.imshow(perturbations)
-#     #plt.show()
-# window = sliding_window_3d(x_test[0],perturbations,[30,30],10)
-#     #wn.append(window)
-# wndw = tf.convert_to_tensor(window)
-#     #print(wndw.shape)
-#     #plt.figure(figsize=(1.5,1.5))
-#     #plt.imshow(wndw[5])
-#     #plt.show()
-#     #for z in window:
-#     #    plt.figure(figsize=(1.5,1.5))
-#     #    plt.imshow(z)
-#     #    plt.show()
-# #print(wndw)
-# for i in wndw:
-#      plt.figure(figsize=(1.5,1.5))
-#      plt.imshow(i)
-#      plt.show()
-#curr = 0
-#wnd.append(wndw)
-#window_out = n_model.predict(wndw)
-#for j in window_out:
-#        if np.argmax(j) == np.argmax(y_test[i]):
-#            curr += 1
-#    out.append(curr)
-#    print(curr)
+ wnd = []
+ perturbations = create_adversarial_pattern(x_test[0], y_test[0])
+     #plt.imshow(perturbations)
+     #plt.show()
+ window = sliding_window_3d(x_test[0],perturbations,[30,30],10)
+     #wn.append(window)
+ wndw = tf.convert_to_tensor(window)
+     #print(wndw.shape)
+     plt.figure(figsize=(1.5,1.5))
+     plt.imshow(wndw[5])
+     plt.show()
+     for z in window:
+         plt.figure(figsize=(1.5,1.5))
+         plt.imshow(z)
+         plt.show()
+ print(wndw)
+ for i in wndw:
+      plt.figure(figsize=(1.5,1.5))
+      plt.imshow(i)
+      plt.show()
+curr = 0
+wnd.append(wndw)
+window_out = n_model.predict(wndw)
+for j in window_out:
+        if np.argmax(j) == np.argmax(y_test[i]):
+            curr += 1
+    out.append(curr)
+    print(curr)
 
 
 # In[14]:
 
 
-#eps1 = 0.01
+eps1 = 0.01
 epsilon = [0]
-#for eps in epsilon:
+for eps in epsilon:
 out = []
 out_wn = []
 for i in range(x_test.shape[0]):
     perturbations = create_adversarial_pattern(x_test[i], y_test[i])
-    #plt.imshow(perturbations)
-    #plt.show()
+    plt.imshow(perturbations)
+    plt.show()
     window = sliding_window_3d(x_test[i],perturbations,[30,30],10)
-    #wn.append(window)
+    wn.append(window)
     wndw = tf.convert_to_tensor(window)
-    #print(wndw.shape)
-    #plt.figure(figsize=(1.5,1.5))
+    print(wndw.shape)
+    plt.figure(figsize=(1.5,1.5))
     #plt.imshow(wndw[5])
     #plt.show()
-    #for z in window:
-    #    plt.figure(figsize=(1.5,1.5))
-    #    plt.imshow(z)
-    #    plt.show()
+    for z in window:
+        plt.figure(figsize=(1.5,1.5))
+        plt.imshow(z)
+        plt.show()
     curr = 0
     out_wn.append(window)
     window_out = n_model.predict(wndw)
@@ -298,15 +298,15 @@ for j in out:
     if j < max(out):
         coun += 1
 print("Number of images for which it is incorrectly classified : ",coun)
-#     for tst in window:
-#         adv_x = tf.clip_by_value(tst, -1, 1)
-#         adv_x = tf.expand_dims(adv_x,axis=0)
-#         prediction = n_model.predict(adv_x)
-#         MaxPosition=np.argmax(prediction)
-#         if MaxPosition == np.argmax(y_img[i]):
-#             curr += 1
-#     out.append(curr)
-#     print(curr)
+     for tst in window:
+         adv_x = tf.clip_by_value(tst, -1, 1)
+         adv_x = tf.expand_dims(adv_x,axis=0)
+         prediction = n_model.predict(adv_x)
+         MaxPosition=np.argmax(prediction)
+         if MaxPosition == np.argmax(y_img[i]):
+             curr += 1
+     out.append(curr)
+     print(curr)
 
 
 # In[16]:
@@ -345,13 +345,13 @@ for i in range(100):
         if np.argmax(x) == np.argmax(y_test[i]):
             curr += 1
     
-#     for tst in window:
-#         adv_x = tf.clip_by_value(tst, -1, 1)
-#         adv_x = tf.expand_dims(adv_x,axis=0)
-#         prediction = n_model.predict(adv_x)
-#         MaxPosition=np.argmax(prediction)
-#         if MaxPosition == np.argmax(y_test[i]):
-#             curr += 1
+     for tst in window:
+         adv_x = tf.clip_by_value(tst, -1, 1)
+         adv_x = tf.expand_dims(adv_x,axis=0)
+         prediction = n_model.predict(adv_x)
+         MaxPosition=np.argmax(prediction)
+         if MaxPosition == np.argmax(y_test[i]):
+             curr += 1
     print("Total number of windows created : ",len(window))
     print("Correct predicted values : ", curr)
     tot = tot + curr
